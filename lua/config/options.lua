@@ -15,3 +15,6 @@ vim.o.shiftwidth = 4
 
 -- Clipboard
 vim.o.clipboard = "unnamed"
+
+-- Formatting
+vim.o.formatoptions = "jqln"
