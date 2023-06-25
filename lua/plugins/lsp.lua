@@ -39,7 +39,7 @@ return {
         end,
       },
       -- Disable autoformat on save
-      -- autoformat = false,
+      autoformat = false,
     },
   },
 }
