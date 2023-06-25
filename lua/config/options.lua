@@ -18,4 +18,4 @@ vim.o.smarttab = true
 vim.o.clipboard = "unnamed"
 
 -- Formatting
--- vim.o.formatoptions = "jqln"
+vim.opt_local.formatoptions:remove({'c', 'r', 'o'})
