@@ -16,7 +16,6 @@ return {
       "intelephense",
       "phpstan",
       "prettierd",
-      "shellcheck",
       "shfmt",
       "stylua",
       "tailwindcss-language-server",
