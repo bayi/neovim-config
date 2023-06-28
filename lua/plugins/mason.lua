@@ -8,7 +8,6 @@ return {
       "dockerfile-language-server",
       "html-lsp",
       "intelephense",
-      "prettierd",
       "shfmt",
       "tailwindcss-language-server",
     },
