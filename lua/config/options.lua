@@ -6,6 +6,8 @@
 vim.g.loaded_python3_provider = 0
 -- Disable perl provider
 vim.g.loaded_perl_provider = 0
+-- Instant username
+vim.g.instant_username = 'bayi'
 
 -- Indentation
 vim.o.tabstop = 4
