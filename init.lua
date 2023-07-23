@@ -32,6 +32,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     --  Load plugins automatically from lua/plugins/*.lua
     { import = 'plugins' },
+    -- Load local only plugins
+    { import = 'local' },
 }, {})
 
 require("options")
