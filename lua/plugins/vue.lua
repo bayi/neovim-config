@@ -1,4 +1,4 @@
 return {
-  "posva/vim-vue",
-  "digitaltoad/vim-pug",
+    'posva/vim-vue',
+    'digitaltoad/vim-pug',
 }
