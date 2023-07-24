@@ -6,7 +6,22 @@ return {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         branch = "0.1.x",
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            -- Project management
+            {
+                "ahmedkhalf/project.nvim",
+                opts = {},
+                event = "VeryLazy",
+                config = function(_, opts)
+                    require("project_nvim").setup(opts)
+                    require("telescope").load_extension("projects")
+                end,
+                keys = {
+                    { "<leader>p", function() require('telescope').extensions.projects.projects() end, desc = "Projects" },
+                },
+            },
+        },
         keys = {
             { "<leader>b,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
         },
