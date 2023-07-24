@@ -39,6 +39,7 @@ return {
                 f = { name = "+file", },
                 g = { name = "+git", },
                 s = { name = "+search", },
+                t = { name = "+term", },
                 x = { name = "+diagnostics", },
 
             }, { prefix = "<leader>" })
