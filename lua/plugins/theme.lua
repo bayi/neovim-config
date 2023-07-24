@@ -13,12 +13,19 @@ return {
     --         vim.cmd.colorscheme 'tokyonight-night'
     --     end,
     -- },
+    -- {
+    --     'AlexvZyl/nordic.nvim',
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require 'nordic'.load()
+    --     end
+    -- },
     {
-        'AlexvZyl/nordic.nvim',
-        lazy = false,
+        'lunarvim/darkplus.nvim',
         priority = 1000,
         config = function()
-            require 'nordic'.load()
-        end
-    }
+            vim.cmd.colorscheme 'darkplus'
+        end,
+    },
 }
