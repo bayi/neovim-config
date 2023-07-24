@@ -28,7 +28,6 @@ return {
         },
         config = function(_, opts)
             local wk = require("which-key")
-            print("Registering which key defaults ...")
             wk.setup(opts)
             wk.register({
                 ["?"] = { "<cmd>WhichKey<CR>", "Show keybindings" },
