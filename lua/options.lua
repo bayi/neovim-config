@@ -64,3 +64,9 @@ vim.opt.wrap = false
 
 -- Hides quotes in jsons for example
 vim.opt.conceallevel = 1
+
+-- Disable auto commenting on newlines
+-- vim.o.formatoptions = "jqln"
+-- vim.opt_local.formatoptions:remove({'c', 'r', 'o'})
+-- vim.cmd('autocmd BufEnter * set formatoptions-=cro')
+-- vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
