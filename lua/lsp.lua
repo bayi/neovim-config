@@ -103,7 +103,7 @@ if is_gcc then
 end
 
 if is_python then
-    servers.jedi_language_server = {} -- python
+    -- servers.jedi_language_server = {} -- python
 end
 
 if is_docker and is_npm then
