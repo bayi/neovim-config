@@ -6,8 +6,9 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = {
         'c', 'cpp', 'lua', 'python',
         'typescript', 'vimdoc', 'vim',
-        'php', 'javascript', 'json', 'html', 'css', 'scss',
-        'bash', 'markdown', 'yaml'
+        'php', 'javascript', 'json', 'html', 'css', 'scss', 'vue', 'pug',
+        'bash', 'markdown', 'yaml',
+        'verilog'
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
