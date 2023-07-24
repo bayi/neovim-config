@@ -49,11 +49,31 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-    clangd = {
+    -- gopls = {},      -- go
+    -- rust_analyzer = {}, -- rust
+    lua_ls = { -- lua
+        Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+        },
+    },
+}
+local is_npm = vim.fn.executable('npm') == 1
+local is_gcc = vim.fn.executable('gcc') == 1
+local is_php = vim.fn.executable('php') == 1
+local is_python = vim.fn.executable('python') == 1
+local is_docker = vim.fn.executable('docker') == 1
 
+if is_npm then
+    servers.tsserver = {}     -- typesecript/javascript
+    servers.volar = {}        -- vue
+    servers.tailwindcss = {}  -- tailwind
+    servers.html = {}         -- html
+    servers.eslint = {}       -- eslint
+end
 
-    }, -- c/c++
-    intelephense = {
+if is_php and is_npm then
+    servers.intelephense = {
         settings = {
             intelephense = {
                 stubs = {
@@ -72,25 +92,21 @@ local servers = {
                 },
             },
         },
-    },                                    -- php
-    tsserver = {},                        -- typescript/javascript
-    jedi_language_server = {},            -- python
-    volar = {},                           -- vue
-    tailwindcss = {},                     -- tailwind
-    dockerls = {},                        -- docker
-    docker_compose_language_service = {}, -- docker-compose
-    html = {},                            -- html
-    eslint = {},                          -- eslint
-    -- gopls = {},      -- go
-    -- rust_analyzer = {}, -- rust
+    } -- php
+end
 
-    lua_ls = { -- lua
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
-    },
-}
+if is_gcc then
+    servers.clangd = {} -- c/c++
+end
+
+if is_python then
+    servers.jedi_language_server = {} -- python
+end
+
+if is_docker and is_npm then
+    servers.dockerls = {}                        -- docker
+    servers.docker_compose_language_service = {} -- docker-compose
+end
 
 -- Setup neovim lua configuration
 require('neodev').setup()
