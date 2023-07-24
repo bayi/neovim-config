@@ -23,6 +23,9 @@ vim.o.autowrite = true
 -- Enable break indent
 vim.o.breakindent = true
 
+-- Enable autoindent
+vim.o.autoindent = true
+
 -- Save undo history
 vim.opt.undodir = vim.fn.stdpath('config') .. '/undodir'
 vim.o.undofile = true
