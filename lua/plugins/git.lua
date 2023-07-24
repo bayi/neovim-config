@@ -18,7 +18,9 @@ return {
             current_line_blame = true,
             numhl = true,
             on_attach = function(bufnr)
-                vim.keymap.set('n', '<leader>gC', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'Stage buffer' })
+                vim.keymap.set('n', '<leader>gS', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'Stage buffer' })
+                vim.keymap.set('n', '<leader>gU', require('gitsigns').undo_stage_hunk, { buffer = bufnr, desc = 'Undo stage' })
+                vim.keymap.set('n', '<leader>gC', "<cmd>term git commit<CR>", { buffer = bufnr, desc = 'Commit changes' })
                 vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview' })
                 -- vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
                 --     { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })

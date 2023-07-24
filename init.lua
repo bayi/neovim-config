@@ -51,10 +51,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- @TODO:
--- - git commit
 -- - Project management ?
 -- - Spectre ?
--- - Trouble ?
 
 require("treesitter")
 require("lsp")
