@@ -50,9 +50,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
--- @TODO:
--- - Spectre ?
-
 require("treesitter")
 require("lsp")
 -- The line beneath this is called `modeline`. See `:help modeline`
