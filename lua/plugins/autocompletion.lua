@@ -20,6 +20,9 @@ return {
         -- Command line
         'hrsh7th/cmp-cmdline',
 
+        -- Buffer
+        'hrsh7th/cmp-buffer',
+
         -- tailwind
         { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
@@ -67,6 +70,8 @@ return {
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
+                { name = 'buffer' },
+                { name = 'path' },
             },
             formatting = {
                 format = function(entry, item)
