@@ -25,38 +25,20 @@ return {
                     g = true,            -- bindings for prefixed with g
                 },
             },
-            defaults = {
-                mode = { "n", "v" },
-                -- ["g"] = { name = "+goto" },
-                -- ["gz"] = { name = "+surround" },
-                -- ["]"] = { name = "+next" },
-                -- ["["] = { name = "+prev" },
-                -- ["<leader><tab>"] = { name = "+tabs" },
-                -- ["<leader>b"] = { name = "+buffer" },
-                -- ["<leader>c"] = { name = "+code" },
-                -- ["<leader>d"] = { name = "+diagnostics" },
-                -- ["<leader>f"] = { name = "+file/find" },
-                -- ["<leader>g"] = { name = "+git" },
-                -- ["<leader>gh"] = { name = "+hunks" },
-                -- ["<leader>q"] = { name = "+quit/session" },
-                -- ["<leader>s"] = { name = "+search" },
-                -- ["<leader>u"] = { name = "+ui" },
-                -- ["<leader>w"] = { name = "+windows" },
-                -- ["<leader>x"] = { name = "+diagnostics/quickfix" },
-            },
-
         },
         config = function(_, opts)
             local wk = require("which-key")
             print("Registering which key defaults ...")
             wk.setup(opts)
-            wk.register(opts.defaults)
             wk.register({
+                ["?"] = { "<cmd>WhichKey<CR>", "Show keybindings" },
                 b = { name = "+buffer", },
-                f = { name = "+file", },
-                c = { name = "+code", 
+                c = {
+                    name = "+code",
                     f = { "<cmd>Format<cr>", "Format code" },
                 },
+                f = { name = "+file", },
+                g = { name = "+git", },
                 s = { name = "+search", },
                 x = { name = "+diagnostics", },
 

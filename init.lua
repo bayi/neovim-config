@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- @TODO:
--- - Which key defaults ...
+-- - git commit
 -- - Project management ?
 -- - Spectre ?
 -- - Trouble ?

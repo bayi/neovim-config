@@ -41,6 +41,10 @@ return {
             vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = 'Search by Grep' })
             vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics,
                 { desc = 'Search Diagnostics' })
+            vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status,
+                { desc = 'Git Status' })
+            vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits,
+                { desc = 'Search Git Commits' })
             -- Enable telescope fzf native, if installed
             pcall(require('telescope').load_extension, 'fzf')
         end,
