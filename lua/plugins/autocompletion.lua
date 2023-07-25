@@ -23,12 +23,24 @@ return {
         -- Buffer
         'hrsh7th/cmp-buffer',
 
+        -- Copilot
+        {
+            'zbirenbaum/copilot-cmp',
+            config = function()
+                require('copilot_cmp').setup()
+            end
+        },
+
         -- tailwind
         { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+
+        -- icons
+        'onsails/lspkind.nvim'
     },
     opts = function(_, opts)
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
+        local lspkind = require('lspkind')
         require('luasnip.loaders.from_vscode').lazy_load()
         luasnip.config.setup {}
 
@@ -68,16 +80,23 @@ return {
                 end, { 'i', 's' }),
             },
             sources = {
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-                { name = 'buffer' },
-                { name = 'path' },
+                { name = 'copilot',  group_index = 2 },
+                { name = 'nvim_lsp', group_index = 2 },
+                { name = 'buffer',   group_index = 2 },
+                { name = 'path',     group_index = 2 },
+                { name = 'luasnip',  group_index = 2 },
             },
             formatting = {
-                format = function(entry, item)
-                    -- Tailwind colorizer
-                    return require("tailwindcss-colorizer-cmp").formatter(entry, item)
-                end
+                format = lspkind.cmp_format({
+                    mode = 'symbol', -- show only symbol annotations
+                    maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                    symbol_map = { Copilot = "" },
+                    before = function(entry, item)
+                        -- Tailwind colorizer
+                        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+                    end
+                })
             }
         }
     end
