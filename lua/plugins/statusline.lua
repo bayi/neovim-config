@@ -7,7 +7,7 @@ return {
         opts = {
             options = {
                 icons_enabled = false,
-                theme = 'onedark',
+                theme = 'darkplus',
                 component_separators = { left = '', right = '' },
                 section_separators = { left = '', right = '' },
             },
@@ -54,6 +54,11 @@ return {
                     {
                         require("lazy.status").updates,
                         cond = require("lazy.status").has_updates,
+                        color = "Special"
+                    },
+                    {
+                        function() return require("copilot_status").status_string() end,
+                        cnd = function() return require("copilot_status").enabled() end,
                         color = "Special"
                     },
                     {

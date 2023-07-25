@@ -56,4 +56,10 @@ return {
             vim.keymap.set("n", "<leader>C", "<cmd>Copilot panel<CR>", { desc = "Copilot Panel" })
         end
     },
+    {
+        "jonahgoldwastaken/copilot-status.nvim",
+        dependencies = { "copilot.lua" }, -- or "zbirenbaum/copilot.lua"
+        lazy = true,
+        event = "BufReadPost",
+    },
 }
