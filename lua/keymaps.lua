@@ -30,3 +30,9 @@ vim.keymap.set("n", "Q", "<Nop>", { desc = "Unmap Q" })
 
 -- Replace current word under cursor
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace current word under cursor" })
+
+-- Ctrl Left/Right decrease/increase window width Up/Down decrease/increase window height
+vim.keymap.set("n", "<C-Left>", "<C-w><", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", "<C-w>>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-Up>", "<C-w>+", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<C-w>-", { desc = "Decrease window height" })
