@@ -12,3 +12,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>xe', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>xq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Move selected blocks of code
+vim.keymap.set('v', 'K', ':move \'<-2<CR>gv=gv', { desc = 'Move block of code up' })
+vim.keymap.set('v', '<S-Up>', ':move \'<-2<CR>gv=gv', { desc = 'Move block of code up' })
+vim.keymap.set('v', 'J', ':move \'>+1<CR>gv=gv', { desc = 'Move block of code down' })
+vim.keymap.set('v', '<S-Down>', ':move \'>+1<CR>gv=gv', { desc = 'Move block of code down' })
