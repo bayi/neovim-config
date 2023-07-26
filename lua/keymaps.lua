@@ -27,3 +27,6 @@ vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 
 -- Unmap Q
 vim.keymap.set("n", "Q", "<Nop>", { desc = "Unmap Q" })
+
+-- Replace current word under cursor
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace current word under cursor" })
