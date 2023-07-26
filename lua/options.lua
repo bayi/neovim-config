@@ -23,6 +23,9 @@ vim.o.autowrite = true
 -- Enable break indent
 vim.o.breakindent = true
 
+-- Smart indents
+vim.o.smartindent = true
+
 -- Enable autoindent
 vim.o.autoindent = true
 
