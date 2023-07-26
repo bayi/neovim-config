@@ -21,3 +21,9 @@ vim.keymap.set("v", "<S-Down>", ":move \'>+1<CR>gv=gv", { desc = "Move block of 
 
 -- J leaves the cursor where it is
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines" })
+
+-- Most important keymap EVAR
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
+
+-- Unmap Q
+vim.keymap.set("n", "Q", "<Nop>", { desc = "Unmap Q" })
