@@ -64,7 +64,7 @@ local servers = {
 local is_npm = vim.fn.executable('npm') == 1
 local is_gcc = vim.fn.executable('gcc') == 1
 local is_php = vim.fn.executable('php') == 1
-local is_python = vim.fn.executable('python') == 1
+-- local is_python = vim.fn.executable('python') == 1
 local is_docker = vim.fn.executable('docker') == 1
 
 if is_npm then
@@ -102,9 +102,9 @@ if is_gcc then
     servers.clangd = {} -- c/c++
 end
 
-if is_python then
-    -- servers.jedi_language_server = {} -- python
-end
+-- if is_python then
+--     servers.jedi_language_server = {} -- python
+-- end
 
 if is_docker and is_npm then
     servers.dockerls = {}                        -- docker
