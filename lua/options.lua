@@ -71,6 +71,15 @@ vim.opt.wrap = false
 -- Hides quotes in jsons for example
 vim.opt.conceallevel = 1
 
+-- Keep atleast 8 lines on the screen when possible
+vim.opt.scrolloff = 8
+
+-- Always show signcolumn
+vim.opt.signcolumn = 'yes'
+
+-- Decrease swap file update time becasue power goes out often :D
+vim.opt.updatetime = 50
+
 -- Disable auto commenting on newlines
 -- vim.o.formatoptions = "jqln"
 -- vim.opt_local.formatoptions:remove({'c', 'r', 'o'})
