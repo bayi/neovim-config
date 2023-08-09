@@ -69,7 +69,20 @@ local is_docker = vim.fn.executable('docker') == 1
 
 if is_npm then
     servers.tsserver = {}     -- typesecript/javascript
-    servers.volar = {}        -- vue
+    servers.volar = {
+        setup = {
+            filetypes = {
+                "vue",
+                "javascript",
+                "javascript.jsx",
+                "typescript",
+                "typescript.tsx",
+                "javascriptreact",
+                "typescriptreact",
+                "json",
+            },
+        },
+    }        -- vue
     servers.tailwindcss = {}  -- tailwind
     servers.html = {}         -- html
     servers.eslint = {}       -- eslint
@@ -126,10 +139,13 @@ mason_lspconfig.setup_handlers {
         if server_name == "clangd" then
             capabilities.offsetEncoding = { "utf-16" }
         end
+        local settings = servers[server_name] or {}
+        local setupots = settings.setup or {}
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = servers[server_name],
+            settings = settings,
+            unpack(setupots),
         }
     end,
 }
