@@ -68,7 +68,7 @@ local is_php = vim.fn.executable('php') == 1
 local is_docker = vim.fn.executable('docker') == 1
 
 if is_npm then
-    servers.tsserver = {}     -- typesecript/javascript
+    -- servers.tsserver = {}     -- typesecript/javascript
     servers.volar = {
         setup = {
             filetypes = {
@@ -141,6 +141,9 @@ mason_lspconfig.setup_handlers {
         end
         local settings = servers[server_name] or {}
         local setupots = settings.setup or {}
+        if server_name == 'volar' then
+            setupots.filetypes = { 'vue', 'typescript', 'javascript' }
+        end
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
