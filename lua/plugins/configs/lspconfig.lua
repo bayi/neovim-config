@@ -1,22 +1,35 @@
-dofile(vim.g.base46_cache .. "lsp")
-require "nvchad.lsp"
-
 local M = {}
-local utils = require "core.utils"
+local map = vim.keymap.set
 
--- export on_attach & capabilities for custom lspconfigs
-M.on_attach = function(client, bufnr)
-  utils.load_mappings("lspconfig", { buffer = bufnr })
-
-  if client.server_capabilities.signatureHelpProvider then
-    require("nvchad.signature").setup(client)
+-- export on_attach & capabilities
+M.on_attach = function(_, bufnr)
+  local function opts(desc)
+    return { buffer = bufnr, desc = "LSP " .. desc }
   end
+
+  map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
+  map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
+  map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
+  map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
+
+  map("n", "<leader>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, opts "List workspace folders")
+
+  map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
+  map("n", "<leader>ra", require "nvchad.lsp.renamer", opts "NvRenamer")
 end
 
--- disable semantic tokens
+-- disable semanticTokens
 M.on_init = function(client, _)
-  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
-    client.server_capabilities.semanticTokensProvider = nil
+  if vim.fn.has "nvim-0.11" ~= 1 then
+    if client.supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
+  else
+    if client:supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
   end
 end
 
@@ -40,28 +53,34 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
-require("lspconfig").lua_ls.setup {
-  on_init = M.on_init,
-  on_attach = M.on_attach,
-  capabilities = M.capabilities,
+M.defaults = function()
+  dofile(vim.g.base46_cache .. "lsp")
+  require("nvchad.lsp").diagnostic_config()
 
-  settings = {
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      M.on_attach(_, args.buf)
+    end,
+  })
+
+  local lua_lsp_settings = {
     Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
+      runtime = { version = "LuaJIT" },
       workspace = {
         library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          "${3rd}/luv/library",
         },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
       },
     },
-  },
-}
+  }
+
+  -- Use new vim.lsp.config API for Neovim 0.11+
+  vim.lsp.config("*", { capabilities = M.capabilities, on_init = M.on_init })
+  vim.lsp.config("lua_ls", { settings = lua_lsp_settings })
+  vim.lsp.enable "lua_ls"
+end
 
 return M
