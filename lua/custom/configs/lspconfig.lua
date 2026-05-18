@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 ---@diagnostic disable-next-line: different-requires
-local lspconfig = require "lspconfig"
+local lspconfig = vim.lsp.config
 
 local is_npm = vim.fn.executable('npm') == 1
 local is_gcc = vim.fn.executable('gcc') == 1
@@ -63,32 +63,32 @@ if is_docker and is_npm then
   servers.docker_compose_language_service = {} -- docker-compose
 end
 
-for lsp, cfg in pairs(servers) do
-  if lsp == "clangd" then
-    capabilities.offsetEncoding = { "utf-16" }
-  end
-  if lsp == "volar" then
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      filetypes = { "typescript", "javascript", "vue" },
-      settings = cfg.settings or {},
-      init_options = cfg.init_options or {},
-    }
-  elseif lsp == "tailwindcss" then
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      filetypes = { "html", "css", "scss", "javascript", "typescript", "vue", "pug" },
-      settings = cfg.settings or {},
-      init_options = cfg.init_options or {},
-    }
-  else
-    lspconfig[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = cfg.settings or {},
-      init_options = cfg.init_options or {},
-    }
-  end
-end
+-- for lsp, cfg in pairs(servers) do
+--   if lsp == "clangd" then
+--     capabilities.offsetEncoding = { "utf-16" }
+--   end
+--   if lsp == "volar" then
+--     lspconfig[lsp].setup {
+--       on_attach = on_attach,
+--       capabilities = capabilities,
+--       filetypes = { "typescript", "javascript", "vue" },
+--       settings = cfg.settings or {},
+--       init_options = cfg.init_options or {},
+--     }
+--   elseif lsp == "tailwindcss" then
+--     lspconfig[lsp].setup {
+--       on_attach = on_attach,
+--       capabilities = capabilities,
+--       filetypes = { "html", "css", "scss", "javascript", "typescript", "vue", "pug" },
+--       settings = cfg.settings or {},
+--       init_options = cfg.init_options or {},
+--     }
+--   else
+--     lspconfig[lsp].setup {
+--       on_attach = on_attach,
+--       capabilities = capabilities,
+--       settings = cfg.settings or {},
+--       init_options = cfg.init_options or {},
+--     }
+--   end
+-- end
